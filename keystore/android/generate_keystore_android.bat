@@ -1,0 +1,1 @@
+keytool -genkey -v -keystore androidkey.keystore -alias androidkey -keyalg RSA -keysize 2048 -validity 10000

@@ -1,16 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="br.com.douglasfernandes.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>HelloWorld</name>
-    <description>Hello World sample application that responds to the deviceready event.</description>
-    <author email="support@phonegap.com" href="http://phonegap.com">PhoneGap Team</author>
+    <description>Aplicação simples que mostra seu uso multiplataforma.</description>
+    <author email="douglasf.filho@gmail.com" href="http://compliancesoftware.com.br">Douglas Fernandes</author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
 </widget>
