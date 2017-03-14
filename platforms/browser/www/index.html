@@ -57,15 +57,9 @@
         app.initialize();
 
         function sayhello() {
-            var buttons = [
-                {
-                    text: "Ok",
-                    click: function(){
-                        $(this).dialog("close");
-                    }
-                }
-            ];
-            MessageBox.show("Teste","PhoneGap",buttons);
+            MessageBox.confirm("Teste","PhoneGap",["Sim","Não"],function(index){
+                MessageBox.alert("Botão escolhido: "+index,"PhoneGap");
+            });
         }
     </script>
     <button id="btn_say_hello" name="btn_say_hello" onclick="sayhello()">Say Hello</button>

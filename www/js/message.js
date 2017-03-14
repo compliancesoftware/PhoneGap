@@ -1,16 +1,10 @@
 var MessageBox = {
-    show: function(message, title, buttons){
-        var html = '<div id="message_box_" title="'+title+'">';
-            html += '<h3>'+message+'</h3>';
-            html += '</div>';
-
-            $(document.body).append(html);
-
-            $("#message_box_").dialog({
-                buttons,
-                close: function(event, ui) {
-                    $("#message_box_").remove();
-                }
-            });
+    confirm: function(message, title, buttons, callback){
+        window.confirm = navigator.notification.confirm;
+        navigator.notification.confirm(message, callback, title, buttons);
+    },
+    alert: function(message, title){
+        window.alert = navigator.notification.alert;
+        navigator.notification.alert(message, null, title, "Ok");
     }
 };
