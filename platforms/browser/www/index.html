@@ -57,6 +57,7 @@
         app.initialize();
 
         function sayhello() {
+            MessageBox.notify(37, "Teste", "PhoneGap");
             MessageBox.confirm("Teste","PhoneGap",["Sim","Não"],function(index){
                 MessageBox.alert("Botão escolhido: "+index,"PhoneGap");
             });
