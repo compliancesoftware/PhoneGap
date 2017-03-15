@@ -9,13 +9,10 @@ var MessageBox = {
     },
     notify(_id, _message, _title){
         navigator.vibrate(500);
-        var now = new Date().getTime();
-        var delay = new Date(now + 1 * 1000);
         cordova.plugins.notification.local.schedule({
             id: _id,
             title: _title,
-            text: _message,
-            at: delay
+            text: _message
         });
     }
 };
