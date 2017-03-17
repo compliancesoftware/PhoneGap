@@ -7,15 +7,18 @@ var MessageBox = {
         window.alert = navigator.notification.alert;
         navigator.notification.alert(message, null, title, "Ok");
     },
-    notify(_id, _message, _title){
-        navigator.vibrate(500);
+    prompt(message, title, callback){
+        window.prompt = navigator.notification.prompt;
+        navigator.notification.prompt(message, callback, title, ["Ok"], null);
+    },
+    notify(_id, _message, _title, _vib){
+        navigator.vibrate(_vib);
         var now = new Date().getTime();
-        var delay = new Date(now + 1 * 1000);
         cordova.plugins.notification.local.schedule({
             id: _id,
             title: _title,
             text: _message,
-            at: delay
+            at: now
         });
     }
 };

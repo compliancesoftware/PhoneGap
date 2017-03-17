@@ -57,9 +57,14 @@
         app.initialize();
 
         function sayhello() {
-            MessageBox.notify(37, "Teste", "PhoneGap");
+            MessageBox.notify(37, "Teste", "PhoneGap",300);
             MessageBox.confirm("Teste","PhoneGap",["Sim","Não"],function(index){
-                MessageBox.alert("Botão escolhido: "+index,"PhoneGap");
+                if(index == 1){
+                    MessageBox.prompt("Informe seu nome.","PhoneGap",function(text){
+                        MessageBox.alert("Seu nome é: "+text,"PhoneGap");
+                
+                    });
+                }
             });
         }
     </script>
