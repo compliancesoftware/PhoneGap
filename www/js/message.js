@@ -9,16 +9,16 @@ var MessageBox = {
         window.alert = navigator.notification.alert;
         navigator.notification.alert(message, null, title, "Ok");
     },
-    prompt(message, title, callback){
+    prompt(message, hint, title, callback){
         console.log("navigator.notification.prompt :: Prompt message.");
         window.prompt = navigator.notification.prompt;
-        navigator.notification.prompt(message, callback, title, ["Ok"], "null");
+        navigator.notification.prompt(message, callback, title, ["Ok"], hint);
     },
     notify(_id, _message, _title, _vib){
         console.log("cordova.plugin.notification.local :: Local schedule with vibration by "+_vib+" milisseconds.");
         navigator.vibrate(_vib);
         var now = new Date().getTime() + 500;
-        console.log("cordova.plugin.notification.local :: Local schedule at "+now+" milisseconds.");
+        console.log("cordova.plugin.notification.local :: Local schedule at: "+new Date(now).toDateString());
         cordova.plugins.notification.local.schedule({
             id: _id,
             title: _title,
