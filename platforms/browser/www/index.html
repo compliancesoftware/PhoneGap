@@ -56,19 +56,30 @@
     <script type="text/javascript">
         app.initialize();
 
-        function sayhello() {
-            MessageBox.notify(37, "Teste", "PhoneGap",300);
-            MessageBox.confirm("Teste","PhoneGap",["Sim","Não"],function(index){
-                if(index == 1){
-                    MessageBox.prompt("Informe seu nome.","PhoneGap",function(text){
-                        MessageBox.alert("Seu nome é: "+text,"PhoneGap");
-                
-                    });
-                }
+        function alerta() {
+            MessageBox.alert("Este é um teste de alerta","PhoneGap");
+        }
+
+        function confirma() {
+            MessageBox.confirm("Teste de confirmação.","PhoneGap",["Sim","Não"],function(index){
+                MessageBox.alert("O botão escolhido foi: "+index, "PhoneGap");
             });
         }
+        
+        function pergunta() {
+            MessageBox.prompt("Informe seu nome","PhoneGap",function(results){
+                MessageBox.alert("Seu nome é: "+results.input1,"PhoneGap");
+            });
+        }
+
+        function notifica() {
+            MessageBox.notify(37, "Teste de notificação.", "PhoneGap",300);
+        }
     </script>
-    <button id="btn_say_hello" name="btn_say_hello" onclick="sayhello()">Say Hello</button>
+    <button id="btn_say_hello" onclick="alerta()">Alerta</button>
+    <button id="btn_say_hello" onclick="confirma()">Confirma</button>
+    <button id="btn_say_hello" onclick="pergunta()">Pergunta</button>
+    <button id="btn_say_hello" onclick="notifica()">Notifica</button>
 </body>
 
 </html>
