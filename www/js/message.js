@@ -12,12 +12,13 @@ var MessageBox = {
     prompt(message, title, callback){
         console.log("navigator.notification.prompt :: Prompt message.");
         window.prompt = navigator.notification.prompt;
-        navigator.notification.prompt(message, callback, title, "Ok", "null");
+        navigator.notification.prompt(message, callback, title, ["Ok"], "null");
     },
     notify(_id, _message, _title, _vib){
         console.log("cordova.plugin.notification.local :: Local schedule with vibration by "+_vib+" milisseconds.");
         navigator.vibrate(_vib);
-        var now = new Date().getTime();
+        var now = new Date().getTime() + 500;
+        console.log("cordova.plugin.notification.local :: Local schedule at "+now+" milisseconds.");
         cordova.plugins.notification.local.schedule({
             id: _id,
             title: _title,
