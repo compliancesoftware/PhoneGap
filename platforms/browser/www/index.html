@@ -57,23 +57,31 @@
         app.initialize();
 
         function alerta() {
-            MessageBox.alert("Este é um teste de alerta","PhoneGap");
+            MessageBox.alerta("Este é um teste de alerta","PhoneGap");
         }
 
         function confirma() {
-            MessageBox.confirm("Teste de confirmação.","PhoneGap",["Sim","Não"],function(index){
-                MessageBox.alert("O botão escolhido foi: "+index, "PhoneGap");
-            });
+            var buttons = {
+                "Sim": function(){
+                    console.log("Botão 'Sim' selecionado");
+                    $(this).dialog("close");
+                },
+                "Não": function(){
+                    console.log("Botão 'Não' Selecionado");
+                    $(this).dialog("close");
+                }
+            };
+            MessageBox.confirma("Teste de confirmação.","PhoneGap",buttons);
         }
         
         function pergunta() {
-            MessageBox.prompt("Informe seu nome","Seu nome","PhoneGap",function(results){
-                MessageBox.alert("Seu nome é: "+results.input1,"PhoneGap");
+            MessageBox.pergunta("Informe seu nome","Seu nome","PhoneGap", function(result){
+                MessageBox.alerta("Seu nome é: "+result, "PhoneGap");
             });
         }
 
         function notifica() {
-            MessageBox.notify(37, "Teste de notificação.", "PhoneGap",300);
+            MessageBox.notifica(37, "Teste de notificação.", "PhoneGap",300);
         }
     </script>
     <button id="btn_say_hello" onclick="alerta()">Alerta</button>

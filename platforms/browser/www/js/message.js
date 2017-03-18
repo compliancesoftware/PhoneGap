@@ -1,20 +1,60 @@
 var MessageBox = {
-    confirm(message, title, buttons, callback){
-        console.log("navigator.notification.confirm :: Confirm message.");
-        window.confirm = navigator.notification.confirm;
-        navigator.notification.confirm(message, callback, title, buttons);
+    confirma(message, title, buttons){
+        console.log("JQuery confirmation :: Confirm message.");
+        var _id = "_message_dialog";
+        var html = '<div id="'+_id+'" title="'+title+'">' +
+                   '<p>'+message+'</p>' +
+                   '</div>';
+
+        $("body").append(html);
+        $("#"+_id).dialog({
+            resizable: false,
+            modal: true,
+            buttons,
+            close: function(){
+                $("#"+_id).remove();
+                console.log("MessageBox dispensada.");
+            }
+        });
     },
-    alert(message, title){
-        console.log("navigator.notification.alert :: Alert message.");
-        window.alert = navigator.notification.alert;
-        navigator.notification.alert(message, null, title, "Ok");
+    alerta(message, title){
+        console.log("JQuery Alert :: Alert message.");
+        var buttons = {
+            "Ok": function(){
+                console.log("Botão 'Ok' foi pressionado.");
+                $(this).dialog("close");
+            }
+        };
+        MessageBox.confirma(message, title, buttons);
     },
-    prompt(message, hint, title, callback){
-        console.log("navigator.notification.prompt :: Prompt message.");
-        window.prompt = navigator.notification.prompt;
-        navigator.notification.prompt(message, callback, title, ["Ok"], hint);
+    pergunta(message, hint, title, callback){
+        console.log("JQuery Form :: Prompt message.");
+        var _id = "_message_prompt_dialog";
+        var input_id = ""+_id+"_input_id";
+        var html = '<div id="'+_id+'" title="'+title+'" style="text-align: center;">' +
+                   '<p>'+message+'</p>' +
+                   '<input type="text" id="'+input_id+'" placeholder="'+hint+'">' +
+                   '</div>';
+        var buttons = {
+            "Ok":function(){
+                var result = $("#"+input_id).val();
+                callback(result);
+                $(this).dialog("close");
+            }
+        };
+
+        $("body").append(html);
+        $("#"+_id).dialog({
+            resizable: false,
+            modal: true,
+            buttons,
+            close: function(){
+                $("#"+_id).remove();
+                console.log("MessageBox dispensada.");
+            }
+        });
     },
-    notify(_id, _message, _title, _vib){
+    notifica(_id, _message, _title, _vib){
         console.log("cordova.plugin.notification.local :: Local schedule with vibration by "+_vib+" milisseconds.");
         navigator.vibrate(_vib);
         var now = new Date().getTime() + 500;
